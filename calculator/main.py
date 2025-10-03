@@ -3,10 +3,12 @@
 import sys
 from pkg.calculator import Calculator
 from pkg.render import format_json_output
+from config.settings import schema_get_files_info
 
 
 def main():
     calculator = Calculator()
+
     if len(sys.argv) <= 1:
         print("Calculator App")
         print('Usage: python main.py "<expression>"')
@@ -14,6 +16,7 @@ def main():
         return
 
     expression = " ".join(sys.argv[1:])
+
     try:
         result = calculator.evaluate(expression)
         if result is not None:

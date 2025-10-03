@@ -1,7 +1,7 @@
 import json
 import os
 from pathlib import Path
-from config.settings import LANGUAGE  # Assume LANGUAGE = "en" in config.settings
+from config.settings import *
 
 
 class Language:

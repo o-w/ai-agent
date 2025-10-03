@@ -1,0 +1,32 @@
+{
+  "en": {
+    "error_invalid_dir": "Error: '{0}' is not a valid directory",
+    "error_outside_directory": "Error: '{0}' is outside the permitted working directory '{1}'",
+    "error_path_resolution": "Error: Path resolution failed for '{0}' or '{1}'",
+    "error_file_not_found": "Error: File not found or is not a regular file: '{0}'",
+    "error_list_files": "Cannot list files in '{0}': {1}",
+    "error_file_access": "File or path error",
+    "success_write_file": "Successfully wrote to '{0}' ({1} characters written)",
+    "error_file_not_exists": "Error: File '{0}' not found",
+    "error_no_py_extension": "Error: '{0}' does not have a .py extension",
+    "error_execution_timeout": "Error: Execution of '{0}' timed out after 30 seconds",
+    "error_execution": "Error executing Python file: {0}",
+    "directory_empty": "Directory is empty",
+    "error_missing_api_key": "No GEMINI_API_KEY found in environment variables.",
+    "error_client_init": "Failed to initialize Gemini API client: {0}",
+    "error_generate_content": "Failed to generate content: {0}",
+    "argparse_description": "Process verbose flag and a string input for Gemini API.",
+    "argparse_verbose_help": "Enable verbose mode to show usage metadata",
+    "argparse_text_help": "A string input to send to the Gemini API",
+    "error_invalid_arguments": "Invalid command-line arguments provided.",
+    "error_no_input": "No input text provided.",
+    "verbose_enabled": "Verbose mode is enabled.",
+    "user_prompt": "User prompt: {0}",
+    "prompt_tokens": "Prompt tokens: {0}",
+    "response_tokens": "Response tokens: {0}",
+    "total_tokens": "Total tokens: {0}",
+    "error_no_response": "No response or function calls returned for input: {0}",
+    "error_function_execution": "Error executing function {0}: {1}",
+    "error_unknown_function": "Unknown function: {0}"
+  }
+}

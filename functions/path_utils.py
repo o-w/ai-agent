@@ -2,7 +2,7 @@ from pathlib import Path
 from config.settings import MAX_FILE_READ_CHARS, WORKING_DIRECTORY
 import os
 import subprocess
-from language import language  # Import the language module
+from functions.language import language  # Import the language module
 
 
 def check_path_within_directory(given_work_directory, file_path):
@@ -77,18 +77,14 @@ def get_files_info(given_work_directory: str, directory: str = "."):
         return language.get("error_list_files", directory, str(e))
 
 
-def get_file_content(given_work_directory, file_path):
-    is_valid, error_message = check_path_within_directory(
-        given_work_directory, file_path
-    )
+def get_file_content(given_work_directory, file):
+    is_valid, error_message = check_path_within_directory(given_work_directory, file)
 
     if not is_valid:
         return error_message
 
     try:
-        abs_joined_file_path = Path(
-            os.path.join(given_work_directory, file_path)
-        ).resolve()
+        abs_joined_file_path = Path(os.path.join(given_work_directory, file)).resolve()
 
         if not abs_joined_file_path.is_file():
             return language.get("error_file_not_found", abs_joined_file_path)
@@ -96,11 +92,13 @@ def get_file_content(given_work_directory, file_path):
         with open(abs_joined_file_path, "r") as f:
             file_content_string = f.read(MAX_FILE_READ_CHARS)
 
-        if len(file_content_string) > 9999:
+        if len(file_content_string) >= MAX_FILE_READ_CHARS:
             truncated_message = (
-                f'[...File "{file_path}" truncated at 10000 characters].'
+                f'[...File "{file}" truncated at {MAX_FILE_READ_CHARS} characters].'
             )
-            file_content_string = file_content_string + truncated_message
+            file_content_string = (
+                file_content_string[:MAX_FILE_READ_CHARS] + truncated_message
+            )
         return file_content_string
 
     except (FileNotFoundError, PermissionError):

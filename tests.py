@@ -2,16 +2,14 @@
 #
 from functions.get_files_info import *
 
-test1 = get_files_info("calculator", ".")
-print(test1)
 
-test2 = get_files_info("calculator", "pkg")
-print(test2)
-
-print("*******************************\n")
-print(
-    get_files_info("calculator", "/bin")
-)  # should produce error, outside permitted working directory
-print(
-    get_files_info("calculator", "../")
-)  # should produce error, outside permitted working directory
+result = run_python_file(("calculator"), "main.py")
+print(result)
+result = run_python_file(("calculator"), "main.py", ["3 + 5"])
+print(result)
+result = run_python_file(("calculator"), "tests.py")
+print(result)
+result = run_python_file(("calculator"), "../main.py")
+print(result)
+result = run_python_file(("calculator"), "nonexistent.py")
+print(result)
