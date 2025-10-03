@@ -157,7 +157,7 @@ def run_python_file(given_work_directory, file_path, args=[]):
                 check=False,
                 text=True,
             )
-            return f"STDOUT:{result.stdout}"
+            return f"STDOUT:{result.stdout} STDERR:{result.stderr}"
         except subprocess.TimeoutExpired:
             return language.get("error_execution_timeout", file_path)
         except Exception as e:

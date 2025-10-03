@@ -54,6 +54,8 @@ def generate_content(client, user_input: str, verbose: bool = False) -> tuple:
     You are a helpful AI coding agent. When a user asks a question or makes a request, make a function call plan. Available functions:
     - get_files_info(directory): List files and directories in the specified directory (relative to the working directory).
     - get_file_content(file): Read the first 10000 characters of the specified file (relative to the working directory).
+    - write_file(file): Write to a file.
+    - run_python_file(file): Execute a python file.
     All paths must be relative to the working directory. Do not include the working directory in your function call arguments.
     """
     messages = [types.Content(role="user", parts=[types.Part(text=user_input)])]
@@ -168,6 +170,8 @@ def main() -> int:
         function_map = {
             "get_files_info": get_files_info,
             "get_file_content": get_file_content,
+            "run_python_file": run_python_file,
+            "write_file": write_file,
         }
         for call in function_calls:
             func_name = call["name"]
@@ -180,6 +184,9 @@ def main() -> int:
                     # Inject WORKING_DIRECTORY as the first argument
                     result = function_map[func_name](WORKING_DIRECTORY, **func_args)
                     print(f"Result: {result}")
+                    # print(
+                    #    f"Would call function: {func_name} with arguments {func_args}"
+                    # )
                 except Exception as e:
                     print(language.get("error_function_execution", func_name, str(e)))
             else:

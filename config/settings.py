@@ -42,9 +42,45 @@ schema_get_file_content = types.FunctionDeclaration(
     ),
 )
 
+schema_run_python_file = types.FunctionDeclaration(
+    name="run_python_file",
+    description="Execute a python file after checking if the extension is correct.",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "file_path": types.Schema(
+                type=types.Type.STRING,
+                description="Run this python file, if extension is correct.",
+            ),
+        },
+    ),
+)
+
+schema_write_file = types.FunctionDeclaration(
+    name="write_file",
+    description="Write a file to the working directory.",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "file_path": types.Schema(
+                type=types.Type.STRING,
+                description="Write a new file in working directory.",
+            ),
+            "content": types.Schema(
+                type=types.Type.STRING,
+                description="Content of file",
+            ),
+        },
+        #        "required": ["file_path", "content"]
+    ),
+)
+
+
 available_functions = types.Tool(
     function_declarations=[
         schema_get_files_info,
         schema_get_file_content,
+        schema_run_python_file,
+        schema_write_file,
     ]
 )
